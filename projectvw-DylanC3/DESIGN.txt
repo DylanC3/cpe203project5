@@ -1,0 +1,6 @@
+P1 Feedback:
+- Since Project 1, I have:
+    - Added getters/setter to UML
+    - Moved executeMinerActivity, executeMinerNotFullActivity, executeOreActivity, executeOreBlobActivity,
+      execute QuakeActivity, and executeVeinActivity from Action to Entity
+    - Fixed blob animation
