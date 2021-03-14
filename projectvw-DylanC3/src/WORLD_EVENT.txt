@@ -1,0 +1,11 @@
+1. how to trigger the event
+- MouseClick
+2. what should happen when the event is triggered
+- triggers 9 nearby background tiles to turn into COVID animations
+3. what the affected entities should do
+- miners turn green to indicate infected by COVID
+4. what the new entity is and how it should behave
+- doctors go around map looking for infected miners to cure
+5. the names of each partner and what each partner was responsible for
+- Dylan Cho
+- Angela Kim
