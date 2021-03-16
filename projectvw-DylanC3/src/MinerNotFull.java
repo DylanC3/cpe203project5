@@ -18,7 +18,11 @@ public class MinerNotFull extends MoveableEntity {
     {
         super(id, position, actionPeriod, animationPeriod, images);
         this.resourceLimit = resourceLimit;
-        this.vaccinated = false;
+    }
+
+    public boolean isVaccinated() { return this.vaccinated; }
+    public void setVaccinated(boolean b) {
+        this.vaccinated = b;
     }
 
     public void _executeActivity(
@@ -68,10 +72,14 @@ public class MinerNotFull extends MoveableEntity {
             ImageStore imageStore)
     {
         if (this.resourceCount >= this.resourceLimit) {
-            ActiveEntity miner = new MinerFull(this.getId(), this.resourceLimit,
+            // was ActiveEntity
+            MinerFull miner = new MinerFull(this.getId(), this.resourceLimit,
                     this.getPosition(), this.getActionPeriod(),
                     this.getAnimationPeriod(),
                     this.getImages());
+
+            if(this.isVaccinated())
+                miner.setVaccinated(true);
 
             world.removeEntity(this);
             scheduler.unscheduleAllEvents(this);
@@ -93,10 +101,13 @@ public class MinerNotFull extends MoveableEntity {
                 world.removeEntity(this);
                 scheduler.unscheduleAllEvents(this);
 
-                InfectedMiner infectedMiner = new InfectedMiner(InfectedMiner.INFECTED_MINER_KEY, newPos,
-                        500, imageStore.getImageList(InfectedMiner.INFECTED_MINER_KEY));
+                InfectedMiner infectedMiner = new InfectedMiner(InfectedMiner.INFECTED_MINER_KEY,
+                        this.resourceLimit, newPos, this.getActionPeriod(),
+                        imageStore.getImageList(InfectedMiner.INFECTED_MINER_KEY));
 
+                infectedMiner.setVaccinated(false);
                 world.addEntity(infectedMiner);
+                infectedMiner.scheduleActions(scheduler, world, imageStore);
                 return true;
             }
             return false;

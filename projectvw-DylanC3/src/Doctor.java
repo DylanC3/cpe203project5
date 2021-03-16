@@ -40,8 +40,8 @@ public class Doctor extends MoveableEntity {
             EventScheduler scheduler)
     {
         if(this.getPosition().adjacent(target.getPosition())) {
-            world.removeEntity(target);
-            scheduler.unscheduleAllEvents(target);
+            // world.removeEntity(target);
+//            scheduler.unscheduleAllEvents(target);
             return true;
         }
         else {
