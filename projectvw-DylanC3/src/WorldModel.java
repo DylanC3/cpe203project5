@@ -62,20 +62,20 @@ public final class WorldModel
         }
     }
 
-    private Entity getOccupancyCell(Point pos) {
+    public Entity getOccupancyCell(Point pos) {
         return this.occupancy[pos.y][pos.x];
     }
 
-    private void setOccupancyCell(Point pos, Entity entity)
+    public void setOccupancyCell(Point pos, Entity entity)
     {
         this.occupancy[pos.y][pos.x] = entity;
     }
 
-    private Background getBackgroundCell(Point pos) {
+    public Background getBackgroundCell(Point pos) {
         return this.background[pos.y][pos.x];
     }
 
-    private void setBackgroundCell(Point pos, Background background)
+    public void setBackgroundCell(Point pos, Background background)
     {
         this.background[pos.y][pos.x] = background;
     }

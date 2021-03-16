@@ -100,6 +100,36 @@ public final class VirtualWorld extends PApplet
         }
     }
 
+    public void mousePressed() {
+        Point mouse = convertToPoint(mouseX, mouseY);
+        // 7ish tiles for covid background
+        Point[] covidTiles = {new Point(mouse.x, mouse.y),
+                new Point(mouse.x + 1, mouse.y),
+                new Point(mouse.x + 2, mouse.y + 1),
+                new Point(mouse.x + 1 , mouse.y - 1),
+                new Point(mouse.x, mouse.y + 1),
+                new Point(mouse.x - 1, mouse.y - 1),
+                new Point(mouse.x - 1, mouse.y + 1),
+                new Point(mouse.x + 2, mouse.y + 1),
+                new Point(mouse.x - 2, mouse.y),
+                new Point(mouse.x - 1 , mouse.y - 2)};
+
+        // create new Background object for covid
+        Background covidBG = new Background("background_covid", imageStore.getImageList("background_covid"));
+
+        for (Point point : covidTiles) {
+            if (world.withinBounds(point)) {
+                world.setBackgroundCell(point, covidBG);
+            }
+        }
+
+    }
+
+    public Point convertToPoint(int x, int y)
+    {
+        return new Point((x/TILE_WIDTH) + view.getViewport().getCol(), (y/TILE_HEIGHT) + view.getViewport().getRow());
+    }
+
     public static Background createDefaultBackground(ImageStore imageStore) {
         return new Background(DEFAULT_IMAGE_NAME,
                               imageStore.getImageList(DEFAULT_IMAGE_NAME));

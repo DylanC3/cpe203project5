@@ -27,6 +27,10 @@ public class MinerNotFull extends MoveableEntity {
         Optional<Entity> notFullTarget =
                 world.findNearest(this.getPosition(), Ore.class);
 
+        if(this.transformInfectedMiner(world, imageStore, scheduler))
+        {
+            return;
+        }
         if (!notFullTarget.isPresent() || !_moveTo(world,
                 notFullTarget.get(),
                 scheduler)
@@ -77,5 +81,22 @@ public class MinerNotFull extends MoveableEntity {
         }
 
         return false;
+    }
+
+    public boolean transformInfectedMiner(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
+    {
+        if (world.getBackgroundCell(this.getPosition()).getId().equals("background_covid")) {
+            Point newPos = this.getPosition();
+            world.removeEntity(this);
+            scheduler.unscheduleAllEvents(this);
+
+            InfectedMiner infectedMiner = new InfectedMiner(InfectedMiner.INFECTED_MINER_KEY, newPos,
+                    500, imageStore.getImageList(InfectedMiner.INFECTED_MINER_KEY));
+
+            world.addEntity(infectedMiner);
+            return true;
+        }
+        return false;
+
     }
 }

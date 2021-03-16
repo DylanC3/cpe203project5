@@ -28,4 +28,10 @@ grass images/grass.bmp
 rocks images/rock.bmp
 dirt images/dirt.bmp
 vein images/vein.bmp
+background_covid images/covid_bg.bmp
 background_default images/none.bmp
+infected_miner images/infected_miner1.bmp 252 252 252 0
+infected_miner images/infected_miner2.bmp 252 252 252 0
+infected_miner images/infected_miner3.bmp 252 252 252 0
+infected_miner images/infected_miner4.bmp 252 252 252 0
+infected_miner images/infected_miner5.bmp 252 252 252 0
