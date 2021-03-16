@@ -24,6 +24,7 @@ public class InfectedMiner extends Entity {
         return actionP;
     }
 
+    // turn infected miner back to notFullMiner
     public void transformFull(
             WorldModel world,
             EventScheduler scheduler,

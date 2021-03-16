@@ -7,5 +7,5 @@
 4. what the new entity is and how it should behave
 - doctors go around map looking for infected miners to cure
 5. the names of each partner and what each partner was responsible for
-- Dylan Cho
+- Dylan Cho: New doctor entity, miners becoming vaccinated and able to move through COVID
 - Angela Kim: Responsible for creating InfectedMiner class and implementing mousePressed() method to trigger covid background tiles when mouse is clicked.

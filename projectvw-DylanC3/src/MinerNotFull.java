@@ -6,6 +6,7 @@ public class MinerNotFull extends MoveableEntity {
 
     private int resourceLimit;
     private int resourceCount;
+    private boolean vaccinated;
 
     public MinerNotFull(
             String id,
@@ -17,6 +18,7 @@ public class MinerNotFull extends MoveableEntity {
     {
         super(id, position, actionPeriod, animationPeriod, images);
         this.resourceLimit = resourceLimit;
+        this.vaccinated = false;
     }
 
     public void _executeActivity(
@@ -85,18 +87,20 @@ public class MinerNotFull extends MoveableEntity {
 
     public boolean transformInfectedMiner(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
     {
-        if (world.getBackgroundCell(this.getPosition()).getId().equals("background_covid")) {
-            Point newPos = this.getPosition();
-            world.removeEntity(this);
-            scheduler.unscheduleAllEvents(this);
+        if(!vaccinated) {
+            if (world.getBackgroundCell(this.getPosition()).getId().equals("background_covid")) {
+                Point newPos = this.getPosition();
+                world.removeEntity(this);
+                scheduler.unscheduleAllEvents(this);
 
-            InfectedMiner infectedMiner = new InfectedMiner(InfectedMiner.INFECTED_MINER_KEY, newPos,
-                    500, imageStore.getImageList(InfectedMiner.INFECTED_MINER_KEY));
+                InfectedMiner infectedMiner = new InfectedMiner(InfectedMiner.INFECTED_MINER_KEY, newPos,
+                        500, imageStore.getImageList(InfectedMiner.INFECTED_MINER_KEY));
 
-            world.addEntity(infectedMiner);
-            return true;
+                world.addEntity(infectedMiner);
+                return true;
+            }
+            return false;
         }
         return false;
-
     }
 }

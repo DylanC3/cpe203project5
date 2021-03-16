@@ -26,13 +26,12 @@ public class Doctor extends MoveableEntity {
         if(doctorTarget.isPresent() && _moveTo(world,
                 doctorTarget.get(), scheduler))
         {
-            return;
+            // insert animation?
         }
-        else {
-            scheduler.scheduleEvent(this,
-                    new Activity(this, world, imageStore),
-                    this.getActionPeriod());
-        }
+        scheduler.scheduleEvent(this,
+                new Activity(this, world, imageStore),
+                this.getActionPeriod());
+
     }
 
     public boolean _moveTo(
@@ -50,24 +49,4 @@ public class Doctor extends MoveableEntity {
             return false;
         }
     }
-
-//    public void transformInfected(
-//            WorldModel world,
-//            EventScheduler scheduler,
-//            ImageStore imageStore)
-//    {
-//        // transforms from Infected back to NotFull
-//        ActiveEntity miner = new MinerNotFull(this.getId(), 2,
-//                this.getPosition(), this.getActionPeriod(),
-//                this.getAnimationPeriod(),
-//                this.getImages());
-//        world.removeEntity(this);
-//        scheduler.unscheduleAllEvents(this);
-//
-//        world.addEntity(miner);
-//        miner.scheduleActions(scheduler, world, imageStore);
-//    }
-
-
-
 }

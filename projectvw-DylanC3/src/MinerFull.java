@@ -6,6 +6,7 @@ import java.util.Optional;
 public class MinerFull extends MoveableEntity {
 
     private int resourceLimit;
+    private boolean vaccinated;
 
     public MinerFull(
             String id,
@@ -18,6 +19,7 @@ public class MinerFull extends MoveableEntity {
     {
         super(id, position, actionPeriod, animationPeriod, images);
         this.resourceLimit = resourceLimit;
+        this.vaccinated = false;
     }
 
     public void _executeActivity(
@@ -80,18 +82,20 @@ public class MinerFull extends MoveableEntity {
 
     public boolean transformInfectedMiner(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
     {
-        if (world.getBackgroundCell(this.getPosition()).getId().equals("background_covid")) {
-            Point newPos = this.getPosition();
-            world.removeEntity(this);
-            scheduler.unscheduleAllEvents(this);
+        if(!vaccinated) {
+            if (world.getBackgroundCell(this.getPosition()).getId().equals("background_covid")) {
+                Point newPos = this.getPosition();
+                world.removeEntity(this);
+                scheduler.unscheduleAllEvents(this);
 
-            InfectedMiner infectedMiner = new InfectedMiner(InfectedMiner.INFECTED_MINER_KEY, newPos,
+                InfectedMiner infectedMiner = new InfectedMiner(InfectedMiner.INFECTED_MINER_KEY, newPos,
                         500, imageStore.getImageList(InfectedMiner.INFECTED_MINER_KEY));
 
-            world.addEntity(infectedMiner);
-            return true;
+                world.addEntity(infectedMiner);
+                return true;
+            }
+            return false;
         }
         return false;
-
     }
 }
