@@ -2,7 +2,7 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class InfectedMiner extends ActiveEntity {
+public class InfectedMiner extends AnimatedEntity {
 
     public static final String INFECTED_MINER_KEY = "infected_miner";
     private int resourceLimit;
@@ -13,10 +13,11 @@ public class InfectedMiner extends ActiveEntity {
             int resourceLimit,
             Point position,
             int actionPeriod,
+            int animationPeriod,
             List<PImage> images)
 
     {
-        super(id, position, actionPeriod, images);
+        super(id, position, actionPeriod, animationPeriod, images);
         this.resourceLimit = resourceLimit;
     }
 
@@ -60,4 +61,19 @@ public class InfectedMiner extends ActiveEntity {
         miner.scheduleActions(scheduler, world, imageStore);
         miner.setVaccinated(true);
     }
+
+    // override the AnimatedEntity Interface
+    public void scheduleActions(
+            EventScheduler scheduler,
+            WorldModel world,
+            ImageStore imageStore)
+    {
+        scheduler.scheduleEvent(this,
+                new Activity(this, world, imageStore),
+                this.getActionPeriod());
+        scheduler.scheduleEvent(this,
+                new Animation(this,0),
+                this.getAnimationPeriod());
+    }
+
 }

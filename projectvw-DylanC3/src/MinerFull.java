@@ -95,7 +95,7 @@ public class MinerFull extends MoveableEntity {
                 scheduler.unscheduleAllEvents(this);
 
                 InfectedMiner infectedMiner = new InfectedMiner(InfectedMiner.INFECTED_MINER_KEY,
-                        this.resourceLimit, newPos, this.getActionPeriod(),
+                        this.resourceLimit, newPos, this.getActionPeriod(), this.getAnimationPeriod(),
                         imageStore.getImageList(InfectedMiner.INFECTED_MINER_KEY));
                 infectedMiner.setVaccinated(false);
                 world.addEntity(infectedMiner);
