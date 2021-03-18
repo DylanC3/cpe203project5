@@ -126,7 +126,7 @@ public final class VirtualWorld extends PApplet
         Point p = new Point(1, 1); // doctor spawn point
         if(!world.isOccupied(p)) {
             Doctor doctor = new Doctor("doctor", p,
-                    2000, 1000, imageStore.getImageList(
+                    500, 1000, imageStore.getImageList(
                     Functions.DOC_KEY));
 
             world.addEntity(doctor);
