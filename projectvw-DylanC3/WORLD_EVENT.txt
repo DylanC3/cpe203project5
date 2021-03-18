@@ -8,7 +8,7 @@
 - 2 doctors go around map looking for infected miners to vaccinate. Once within 1 tile, doctors vaccinate the miners,
   causing them to now be immune to the virus and protected from future COVID infections as well
 5. the names of each partner and what each partner was responsible for
-- Dylan Cho: Doctor entity, miner vaccination, miner transformation, debugging
+- Dylan Cho: Doctor entity + spawn on click, miner vaccination, miner transformation, debugging
 - Angela Kim: InfectedMiner class and implementing mousePressed() method to trigger covid background tiles when
               mouse is clicked.
 

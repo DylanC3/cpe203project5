@@ -83,23 +83,6 @@ public final class Functions
         return properties.length == MINER_NUM_PROPERTIES;
     }
 
-    public static boolean parseDoctor(
-            String[] properties, WorldModel world, ImageStore imageStore)
-    {
-        if (properties.length == DOC_NUM_PROPERTIES) {
-            Point pt = new Point(Integer.parseInt(properties[DOC_COL]),
-                    Integer.parseInt(properties[DOC_ROW]));
-            Entity entity = new Doctor(properties[DOC_ID],
-                    pt, Integer.parseInt(
-                    properties[DOC_ACTION_PERIOD]), Integer.parseInt(
-                    properties[DOC_ANIMATION_PERIOD]),
-                    imageStore.getImageList(
-                            DOC_KEY));
-            world.tryAddEntity(entity);
-        }
-        return properties.length == DOC_NUM_PROPERTIES;
-    }
-
     public static boolean parseObstacle(
             String[] properties, WorldModel world, ImageStore imageStore)
     {

@@ -87,8 +87,6 @@ public final class ImageStore
                     return Functions.parseOre(properties, world, this);
                 case Functions.SMITH_KEY:
                     return Functions.parseSmith(properties, world, this);
-                case Functions.DOC_KEY:
-                    return Functions.parseDoctor(properties, world, this);
                 case Functions.VEIN_KEY:
                     return Functions.parseVein(properties, world, this);
             }
